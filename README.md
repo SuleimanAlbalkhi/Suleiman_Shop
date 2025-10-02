@@ -15,9 +15,9 @@ A full-stack shop application built with ASP.NET Core (backend) and Angular (fro
 ## Getting Started
 
 ### Prerequisites
-- .NET Core SDK 3.1+
-- Node.js & npm
-- Angular CLI (`npm install -g @angular/cli`)
+- .NET Core SDK 3.1+ (or newer)
+- Node.js 16.x (LTS recommended for Angular 10)
+- npm (comes with Node.js)
 
 ### Backend (Shop.API)
 1. Restore dependencies:
@@ -34,17 +34,25 @@ A full-stack shop application built with ASP.NET Core (backend) and Angular (fro
    ```
 4. API available at `http://localhost:5000`
 
+
 ### Frontend (Shop.Frontend)
 1. Install dependencies:
    ```sh
    cd Shop.Frontend
    npm install
    ```
-2. Start dev server:
+2. Start dev server (use local Angular CLI):
    ```sh
-   ng serve
+   npx ng serve
    ```
+   - If you see errors about Node.js version or Angular CLI, ensure you are using Node.js 16.x and do NOT install Angular CLI globally.
 3. App available at `http://localhost:4200`
+
+#### Troubleshooting
+- If you see errors like `ERR_OSSL_EVP_UNSUPPORTED` or "Angular CLI requires a minimum Node.js version", check your Node.js version:
+  - Angular 10 requires Node.js 16.x (not 17+ or 20+)
+  - Use `npx ng serve` to run the local CLI, not a global install
+  - Uninstall global Angular CLI if needed: `npm uninstall -g @angular/cli`
 
 ## Testing
 - **Backend**: Add and run tests using standard .NET test frameworks
@@ -81,4 +89,4 @@ Shop.Frontend/      # Angular frontend
 - `Shop.Frontend/README.md`: Angular workflow reference
 
 ## License
-MIT
+© 2025 Suleiman_Shop
