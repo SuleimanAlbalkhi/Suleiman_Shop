@@ -1,0 +1,36 @@
+<div class="clearfix">
+    <div>
+        <div class="button-group">
+            <button type="button" class="btn btn-secondary float-left" style="margin-right: -4px;" (click)="fetchProducts()"
+                role="button">Show all</button>
+        </div>
+    </div>
+    
+    <div>
+        <a class="btn btn-success float-right" routerLink="/products/new" role="button"><i class="fa fa-plus"></i> Add Product</a>
+    </div>
+</div>
+<br />
+<br />
+
+<div class="card-group">
+    <div class="row">
+        <ng-container *ngIf="products">
+            <ng-container *ngFor="let product of products">
+                <div class="col-4">
+                    <div class="card product-card my-2" (click)="onProductSelect(product)">
+                        <img class="card-img-top product-card-image" [src]="product.pictureUrl" alt="Product Image">
+                        <div class="card-block">
+                            <h4 class="card-title">{{product.name}}</h4>
+                            <p class="card-text">{{product.description}}</p>
+                            <h2>€{{product.price}}</h2>
+                        </div>
+                        <div class="card-footer clickable">
+                            <small class="text-muted">View Details &rsaquo;&rsaquo;</small>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </ng-container>
+    </div>
+</div>
