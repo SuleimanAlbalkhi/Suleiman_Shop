@@ -2,6 +2,12 @@
 
 A full-stack shop application built with ASP.NET Core (backend) and Angular (frontend).
 
+## Video Review
+
+
+https://github.com/user-attachments/assets/ebbdcd69-842d-4b45-89e2-6f11e422447b
+
+
 ## Architecture
 - **Shop.API**: ASP.NET Core Web API for backend services
 - **Shop.Frontend**: Angular 10+ SPA for frontend user interface
