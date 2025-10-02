@@ -30,63 +30,88 @@ A full-stack shop application built with ASP.NET Core (backend) and Angular (fro
    ```
 3. Run (with hot reload):
    ```sh
-   dotnet watch run Shop.API/shop.API.csproj
+
+   # Shop.Suleiman
+
+   A modern full-stack shop application built with ASP.NET Core (.NET 9) and Angular 10.
+
+   ## Overview
+   - **Shop.API**: ASP.NET Core Web API for backend services
+   - **Shop.Frontend**: Angular SPA for frontend user interface
+
+   ## Features
+   - Product management via RESTful API
+   - SQLite database with EF Core migrations
+   - Angular SPA for product browsing and notifications
+   - Clean separation using repositories, DTOs, and AutoMapper
+
+   ## Quick Start
+
+   ### Prerequisites
+   - .NET 9 SDK & Runtime
+   - Node.js 16.x (LTS)
+   - npm
+
+   ### Backend Setup (Shop.API)
+   ```sh
+   dotnet restore Shop.API/shop.API.csproj
+   dotnet build Shop.API/shop.API.csproj
+   dotnet run --project Shop.API/shop.API.csproj
+   # API runs at https://localhost:5001 and http://localhost:5000
    ```
-4. API available at `http://localhost:5000`
+   **CORS for development:**
+   In `Startup.cs`, use:
+   ```csharp
+   services.AddCors();
+   app.UseCors(options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+   ```
 
-
-### Frontend (Shop.Frontend)
-1. Install dependencies:
+   ### Frontend Setup (Shop.Frontend)
    ```sh
    cd Shop.Frontend
    npm install
-   ```
-2. Start dev server (use local Angular CLI):
-   ```sh
    npx ng serve
+   # App runs at http://localhost:4200
    ```
-   - If you see errors about Node.js version or Angular CLI, ensure you are using Node.js 16.x and do NOT install Angular CLI globally.
-3. App available at `http://localhost:4200`
+   **API URL:**
+   Set `baseUrl` in `src/app/Products/products.service.ts` to match your backend (default: `https://localhost:5001/api/products`).
 
-#### Troubleshooting
-- If you see errors like `ERR_OSSL_EVP_UNSUPPORTED` or "Angular CLI requires a minimum Node.js version", check your Node.js version:
-  - Angular 10 requires Node.js 16.x (not 17+ or 20+)
-  - Use `npx ng serve` to run the local CLI, not a global install
-  - Uninstall global Angular CLI if needed: `npm uninstall -g @angular/cli`
+   ## Full Stack Testing
+   1. Start backend: `dotnet run --project Shop.API/shop.API.csproj`
+   2. Start frontend: `cd Shop.Frontend && npx ng serve`
+   3. Open `http://localhost:4200` in your browser
+   4. Confirm product data loads from the API
+   5. If you see errors, check CORS, API URL, and certificate trust
 
-## Testing
-- **Backend**: Add and run tests using standard .NET test frameworks
-- **Frontend**:
-  - Unit tests: `ng test` (Karma)
-  - E2E tests: `ng e2e` (Protractor)
+   ## Troubleshooting
+   - **Node/Angular CLI errors:** Use Node.js 16.x, run `npx ng serve`, uninstall global Angular CLI if needed
+   - **CORS errors:** Ensure backend allows any origin for development
+   - **Certificate warnings:** Accept/trust the developer certificate in your browser for local HTTPS
 
-## Project Structure
-```
-Shop.API/           # ASP.NET Core backend
-  Controllers/      # API controllers
-  Data/             # Repositories and DB contexts
-  Dtos/             # Data Transfer Objects
-  Models/           # Entity models
-  Profiles/         # AutoMapper profiles
-  Migrations/       # EF Core migrations
-Shop.Frontend/      # Angular frontend
-  src/app/          # Main app code
-    Products/       # Product feature
-    ...
-```
+   ## Project Structure
+   ```
+   Shop.API/           # ASP.NET Core backend
+      Controllers/      # API controllers
+      Data/             # Repositories and DB contexts
+      Dtos/             # Data Transfer Objects
+      Models/           # Entity models
+      Profiles/         # AutoMapper profiles
+      Migrations/       # EF Core migrations
+   Shop.Frontend/      # Angular frontend
+      src/app/          # Main app code
+         Products/       # Product feature
+         ...
+   ```
 
-## Conventions & Patterns
-- Backend uses interface-based repositories (`IProductRepo`) and DTOs
-- AutoMapper for model/DTO mapping
-- Angular services for API communication
-- Error handling via HTTP responses and RxJS
+   ## Patterns & Key Files
+   - Interface-based repositories (`IProductRepo`)
+   - DTOs and AutoMapper for API data
+   - Angular services for API communication
+   - Error handling via HTTP responses and RxJS
+   - `Shop.API/Startup.cs`: API config & CORS
+   - `Shop.API/Data/IProductRepo.cs`: Repository interface
+   - `Shop.API/Controllers/ProductsController.cs`: Product API
+   - `Shop.Frontend/src/app/app.module.ts`: Angular root module
 
-## Key Files
-- `Shop.API/Startup.cs`: API configuration
-- `Shop.API/Data/IProductRepo.cs`: Repository interface
-- `Shop.API/Controllers/ProductsController.cs`: Product API
-- `Shop.Frontend/src/app/app.module.ts`: Angular root module
-- `Shop.Frontend/README.md`: Angular workflow reference
-
-## License
-© 2025 Suleiman_Shop
+   ## License
+   © 2025 Suleiman_Shop
